@@ -1,39 +1,19 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <title>AI Асистент за Ученици</title>
-  <style>
-    body { font-family: Arial; background: #f2f2f2; margin: 0; padding: 0; }
-    #chatbox { width: 100%; max-width: 500px; margin: 80px auto; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 0 10px #ccc; }
-    .entry { margin-bottom: 10px; }
-    .user { font-weight: bold; }
-    .ai { color: darkblue; }
-    input, button { padding: 10px; margin-top: 10px; width: calc(100% - 22px); }
-  </style>
+  <meta charset="UTF-8">
+  <title>Платформа - Демо</title>
+  <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-  <div id="chatbox">
-    <h2>AI Асистент за Ученици</h2>
-    <div id="chat"></div>
-    <input type="text" id="prompt" placeholder="Въведи задача..." />
-    <button onclick="send()">Изпрати</button>
-  </div>
-
-  <script>
-    async function send() {
-      const prompt = document.getElementById("prompt").value;
-      const chat = document.getElementById("chat");
-      chat.innerHTML += `<div class="entry"><span class="user">Ти:</span> ${prompt}</div>`;
-      const res = await fetch("/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      });
-      const data = await res.json();
-      chat.innerHTML += `<div class="entry"><span class="ai">AI:</span> ${data.reply}</div>`;
-      document.getElementById("prompt").value = "";
-    }
-  </script>
+  <nav>
+    <a href="/views/offers.html">Оферти</a> |
+    <a href="/views/requests.html">Заявки</a> |
+    <a href="/views/users.html">Потребители</a>
+  </nav>
+  <main>
+    <h1>Добре дошли в демо платформата</h1>
+    <p>Това е визуален преглед на активните секции.</p>
+  </main>
 </body>
 </html>
