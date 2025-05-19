@@ -1,23 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
   <title>AI Асистент за Ученици</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="overlay">
-    <div class="container">
-      <h1>AI Асистент за Ученици</h1>
-      <div id="chat"></div>
-      <input type="text" id="userInput" placeholder="Въведи задача...">
-      <div class="buttons">
-        <button onclick="sendMessage()">Изпрати</button>
-        <button onclick="startListening()">Говори</button>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+  <h2>Въведи въпрос</h2>
+  <input id="question" style="width:300px;" placeholder="Какво е фотосинтеза?"/>
+  <button onclick="ask()">Изпрати</button>
+  <p><strong>AI:</strong> <span id="answer"></span></p>
+  <script>
+    function ask() {
+      const q = document.getElementById('question').value;
+      fetch('/ask', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({question: q})
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('answer').innerText = data.answer;
+      })
+      .catch(() => document.getElementById('answer').innerText = 'Грешка при заявката');
+    }
+  </script>
 </body>
 </html>
